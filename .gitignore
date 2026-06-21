@@ -1,0 +1,25 @@
+# --- R / RStudio ---
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.bak
+
+# --- Pipeline working files and generated outputs ---
+data/processed/
+output/tables/*
+output/figures/*
+output/logs/*
+!output/**/.gitkeep
+
+# --- Proprietary Web of Science data ---
+# Real WoS Core Collection exports are proprietary and must NOT be committed.
+# Keep them locally in data/private/; only the synthetic demo files in
+# data/raw/ are tracked.
+data/private/*
+!data/private/README.md
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*~

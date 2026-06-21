@@ -1,0 +1,114 @@
+merge_rules <- c(
+  "ELLIS D., 1989, JOURNAL OF DOCUMENTATION" = "ELLIS D, 1989, J DOC",
+  "WILSON TD, 1999, J DOCUMENTATION" = "WILSON TD, 1999, J DOC"
+)
+
+# Self-citation patterns for the five-paper JASIST series only.
+# Removed: "WILSON TD, 1999, INFORM PROCESS MANAG", "FORD N, 2000, P ASIS ANN",
+# "FORD N, 2000, ASIS 2000" — these three contextual papers are no longer part
+# of the constitutive corpus and must not be excluded from up_foundations.
+# Wilson 1999 (IPM) in particular must be free to enter the foundation set.
+up_self_patterns <- c(
+  "SPINK A, 2002, J AM SOC INF SCI TEC",
+  "WILSON TD, 2002, J AM SOC INF SCI TEC",
+  "FORD N, 2002, J AM SOC INF SCI TEC",
+  "ELLIS D, 2002, J AM SOC INF SCI TEC"
+)
+
+# Uncertainty strand: works associated with Wilson, Kuhlthau, Belkin, Ellis,
+# Dervin, Ingwersen and related information-seeking / IR-interaction research.
+uncertainty_keys <- c(
+  "WILSON TD, 1999, J DOC",
+  "WILSON TD, 1981, J DOC",
+  "WILSON TD, 1997, INFORM PROCESS MANAG",
+  "WILSON TD, 1999, INFORM PROCESS MANAG",  # now an external foundation
+  "WILSON TD, 1977, J DOC",
+  "WILSON TD, 1979, J DOC",
+  "KUHLTHAU CC, 1991, J AM SOC INFORM SCI",
+  "KUHLTHAU CC, 1993, J DOC",
+  "KUHLTHAU C.C., 1993, SEEKING MEANING: A PROCESS APPROACH TO LIBRARY AND INFORMATION SERVICES",
+  "KUHLTHAU CC, 1996, P 2 INT C LIB INF SC",
+  "KUHLTHAU C, 1992, P ASIS ANNU MEET",
+  "ELLIS D, 1989, J DOC",
+  "ELLIS D, 1993, J DOC",
+  "ELLIS D., 1996, PROGR PROBLEMS INFOR",
+  "DERVIN B., 1983, ANN M INT COMMUNICAT",
+  "DERVIN B., 1992, QUALITATIVE RES INFO",
+  "DERVIN B, 1986, ANN REV INFORMATION",
+  "BELKIN NJ, 1982, J DOC",
+  "BELKIN NJ, 1980, CAN J INFORM SCI",
+  "BELKIN NJ, 1995, EXPERT SYST APPL",
+  "INGWERSEN P, 1992, INFORMATION RETRIEVA",
+  "INGWERSEN P, 1996, J DOC",
+  "INGWERSEN P, 1988, NEW RES PARADIGM IR",
+  "SARACEVIC T, 1988, J AM SOC INFORM SCI",
+  "SARACEVIC T, 1989, P ASIS ANNU MEET",
+  "SARACEVIC T, 1996, P ASIS ANN",
+  "SARACEVIC T, 1990, P ASIS ANNU MEET",
+  "SARACEVIC T, 1991, ONLINE REV",
+  "VAKKARI P, 2001, J DOC",
+  "VAKKARI P, 2000, J DOC",
+  "VAKKARI P, 1999, EXPLORING CONTEXTS I",
+  "BATES MJ, 1990, INFORM PROCESS MANAG",
+  "BATES MJ, 1984, RQ",
+  "SPINK A, 1997, J AM SOC INFORM SCI",
+  "SPINK A, 1996, J AM SOC INFORM SCI",
+  "SPINK A, 1998, INFORM PROCESS MANAG",
+  "SPINK A, 1996, INFORM PROCESS MANAG",
+  "SPINK A, 1999, J INF SCI",
+  "SPINK A, 1996, ANN REV INFORMATION",
+  "SPINK A, 1993, P ASIS ANNU MEET",
+  "SPINK A, 1992, ONLINE REV",
+  "SPINK A, 1995, INFORM PROCESS MANAG",
+  "WANG PL, 2000, INFORM PROCESS MANAG",
+  "XIE H, 2000, J AM SOC INFORM SCI",
+  "BEAULIEU M, 2000, J DOC",
+  "HERT CA, 1996, J AM SOC INFORM SCI",
+  "MOKROS HB, 1995, LIBR INFORM SCI RES",
+  "PALMER J, 1991, J DOC"
+)
+
+# Cognitive-styles strand: works associated with Witkin, Pask, Riding, Ford
+# and related cognitive / educational-psychology traditions.
+cognitive_styles_keys <- c(
+  "WITKIN HA, 1977, REV EDUC RES",
+  "PASK G., 1988, LEARNING STRATEGIES AND LEARNING STYLES",
+  "PASK G, 1976, BRIT J EDUC PSYCHOL",
+  "PASK G., 1972, INT J MAN MACH STUD",
+  "PASK G, 1979, 2708 SSRC RES PROGR",
+  "RIDING R., 1991, EDUCATIONAL PSYCHOLOGY",
+  "RIDING R., 1991, COGNITIVE STYLES ANALYSIS: ADMINISTRATION",
+  "RIDING R, 1992, EDUC STUD",
+  "BRUMBY MN, 1982, BRIT J EDUC PSYCHOL",
+  "MILLER A., 1987, EDUCATIONAL PSYCHOLOGY",
+  "FORD N, 1985, BRIT J EDUC TECHNOL",
+  "FORD N, 1995, INT J HUM-COMPUT ST",
+  "FORD N, 1994, ONLINE CDROM REV",
+  "FORD N, 1993, INFORM PROCESS MANAG",
+  "FORD N, 1992, BRIT J EDUC TECHNOL",
+  "FORD N, 1985, EDUC INFORM",
+  "FORD N, 1996, ASLIB PROC",
+  "FORD N, 1999, J DOC",
+  "FORD N, 2000, J DOC",
+  "FORD N, 2001, BRIT J EDUC TECHNOL",
+  "CHEN SY, 1998, KNOWL ORGAN",
+  "ENTWISTLE N, 1979, HIGH EDUC",
+  "PALMQUIST RA, 2000, J AM SOC INFORM SCI",
+  "JONASSEN D.H., 1993, INDIVIDUAL DIFFERENCES AND INSTRUCTION"
+)
+
+# Short labels for the five-paper JASIST series only
+up_short_labels <- c(
+  "WOS:000176317500001" = "Pt1 Spink 2002",
+  "WOS:000176317500002" = "Pt2 Wilson 2002",
+  "WOS:000176317500003" = "Pt3 Spink 2002",
+  "WOS:000176317500004" = "Pt4 Ford 2002",
+  "WOS:000177658400002" = "Pt5 Ellis 2002"
+)
+
+# Always excluded from external citing corpus: intra-series cross-citations + erratum.
+# Uses jasist_uts and erratum_uts defined in config.R.
+uts_drop_base <- c(
+  jasist_uts,
+  erratum_uts
+)
