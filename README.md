@@ -1,148 +1,256 @@
-# UP Bibliographic-Coupling R Project — Corrected Corpus Version
+# UP Bibliographic-Coupling Project
 
-> **Data notice.** This repository ships **synthetic** demonstration data, not
-> Web of Science data. The pipeline runs end to end on the synthetic files in
-> `data/raw/`, but the resulting numbers are **illustrative only and do not
-> reproduce the published results**. The real analysis uses proprietary Web of
-> Science Core Collection exports, which are not redistributed here. To run on
-> real data, see "Inputs" below. Do not cite figures produced from synthetic data.
+## Reconstructing the Intellectual Base of the Uncertainty Project
 
-This project refactors the original single-file workflow into a modular pipeline and adds a correction layer for false-positive and false-negative citation matching.
+> **Data notice.** This repository ships **synthetic demonstration data**, not Web of Science Core Collection data. The pipeline runs end-to-end on the included synthetic files, but resulting statistics are illustrative only and do not reproduce the published findings. Real Web of Science exports are proprietary and are not redistributed.
 
-## Corpus scope: five Parts (not eight)
+---
 
-The constitutive corpus is the **five JASIST 2002 Parts** only. The three
-pre-2002 precursors — Wilson (1999, *IP&M*), Wilson (1999, conference), and
-Ford et al. (2000, ASIS) — are treated as contextual, not constitutive, and
-are excluded from the source set used to build the intellectual base.
+## Overview
 
-A direct consequence of this restriction is that **Wilson (1999, *IP&M*)
-re-enters the analysis as an external foundation** (it is no longer removed as
-a self-citation). The five-Part scope is enforced by assertions in
-`R/config.R` and `scripts/02_read_and_parse_wos.R`; pointing the source file at
-the old eight-record export now stops the run rather than silently producing
-eight-Part results.
+This repository contains a reproducible R workflow for reconstructing and analysing the intellectual base of the **Uncertainty Project (UP)** using bibliographic coupling.
 
-## Design
+The project combines:
 
-The workflow uses a **curated / validated WoS-derived citation corpus** as the primary basis for bibliographic coupling to the intellectual base.
+- Web of Science–derived citation data
+- Citation-corpus validation and correction
+- Intellectual-base reconstruction
+- Bibliographic-coupling analysis
+- Temporal and strand-based analyses
+- Fully reproducible outputs
 
-It proceeds as follows:
+A central contribution of the project is the incorporation of a **validated correction layer** that addresses false-positive and false-negative citation matching before coupling analysis is performed.
 
-1. Read the five JASIST 2002 Uncertainty Project source records and the WoS citing-record export.
-2. Parse cited references line by line.
-3. Apply citation-corpus corrections:
-   - remove confirmed false-positive citing records;
-   - add confirmed missed citing records when present in the raw WoS export;
-   - flag self-citations and institutional citations;
-   - retain an audit trail.
-4. Construct the Uncertainty Project intellectual base.
-5. Run bibliographic coupling to the intellectual base on the corrected corpus.
-6. Export tables, figures, and session information.
+---
+
+## Research Contributions
+
+### Methodological
+
+- Explicit five-Part definition of the Uncertainty Project corpus
+- Record-level citation validation
+- Correction of false-positive and false-negative citation matches
+- Construction of a corrected bibliographic-coupling corpus
+- Reconstruction of the intellectual foundations of the UP
+
+### Software
+
+- Modular R pipeline
+- Reproducible workflow architecture
+- Synthetic demonstration dataset
+- Automated table and figure generation
+- Audit-trail preservation
+
+---
+
+## Corpus Scope
+
+### Constitutive Corpus
+
+The constitutive corpus consists exclusively of the five JASIST 2002 Uncertainty Project Parts:
+
+| Part | Lead Author |
+|------|-------------|
+| Part 1 | Spink |
+| Part 2 | Wilson |
+| Part 3 | Spink |
+| Part 4 | Ford |
+| Part 5 | Ellis |
+
+### Excluded Precursors
+
+The following publications are treated as contextual precursors rather than constitutive UP documents:
+
+- Wilson (1999, IP&M)
+- Wilson (1999, conference paper)
+- Ford et al. (2000, ASIS)
+
+Because these publications are excluded from the source corpus, they may appear as external intellectual foundations in the coupling analysis.
+
+The five-Part scope is enforced by assertions within the codebase.
+
+---
+
+## Workflow
+
+```text
+WoS Source Records
+        ↓
+Reference Parsing
+        ↓
+Corpus Validation
+        ↓
+Correction Layer
+        ↓
+Intellectual Base Construction
+        ↓
+Bibliographic Coupling
+        ↓
+Classification & Analysis
+        ↓
+Tables, Figures & Audit Outputs
+```
+
+### Processing Steps
+
+1. Read source records.
+2. Read citing-record export.
+3. Parse cited references.
+4. Apply validated corrections.
+5. Construct intellectual base.
+6. Compute bibliographic coupling.
+7. Generate classifications.
+8. Export tables and figures.
+
+---
+
+## Repository Structure
+
+```text
+UP_bibliographic_coupling.Rproj
+├── R/
+│   ├── config.R
+│   ├── corrections.R
+│   └── lookups.R
+├── scripts/
+│   ├── 00_run_all.R
+│   └── ...
+├── data/
+│   ├── raw/
+│   └── private/
+├── output/
+│   ├── tables/
+│   └── figures/
+├── data-raw/
+├── LICENSE
+└── README.md
+```
+
+---
 
 ## Inputs
 
-The pipeline reads two Web of Science plain-text exports (Full Record and Cited
-References):
+### Required Files
 
-1. `citing_jasist5.txt` — the five JASIST 2002 Parts (Pt1 Spink, Pt2 Wilson,
-   Pt3 Spink, Pt4 Ford, Pt5 Ellis); the source set for the intellectual base.
-2. `323_references.txt` — the citing records.
+| File | Purpose |
+|--------|---------|
+| `citing_jasist5.txt` | Five UP source records |
+| `323_references.txt` | Citing-record corpus |
 
-**Synthetic demo data (shipped, safe to publish).** Synthetic versions of both
-files live in `data/raw/`. They are fabricated records that keep only the
-identifiers the code needs (Part UTs/DOIs, the citing UTs in `R/corrections.R`,
-and the strand keys in `R/lookups.R`). Regenerate them with:
+### DOI Dataset
 
+`UP_dois.csv` contains DOI information for the 241 citing documents identified in the study.
+
+- 196 records with assigned DOIs
+- 45 records without DOI assignments
+
+---
+
+## Data Availability
+
+### Included
+
+- Synthetic WoS-like source records
+- Synthetic citing-record export
+- DOI metadata file
+- Reproducible workflow code
+
+### Not Included
+
+- Real Web of Science exports
+- Licensed Clarivate data
+
+Users wishing to reproduce the published analysis must supply their own licensed Web of Science exports.
+
+---
+
+## Citation-Corpus Validation
+
+The correction layer is implemented in:
+
+```text
+R/corrections.R
 ```
-python3 data-raw/make_synthetic_wos.py
-```
 
-The generator is deterministic and reads the R config so the fabricated
-identifiers stay in sync with the code. See `data/raw/README.md` for details.
+The validation process records:
 
-**Real data (proprietary, not shipped).** Place the real WoS exports in
-`data/private/` (git-ignored):
+- confirmed false positives
+- confirmed false negatives
+- record-level corrections
+- part-level corrections
+- self-citation flags
+- institutional-citation flags
 
-```
-data/private/citing_jasist5.txt
-data/private/323_references.txt
-```
+An audit trail is preserved throughout the workflow.
 
-`R/config.R` automatically prefers `data/private/` when those files exist, so
-the real run never modifies the tracked synthetic files.
+---
 
-## Correction layer
+## Running the Analysis
 
-The current correction layer is stored in:
-
-- `R/corrections.R`
-
-It includes the verified corrections currently documented in the correction notes. When Tom finishes validating the whole corpus, update this file by adding all additional confirmed removals/additions.
-
-## Running
-
-Open `UP_bibliographic_coupling.Rproj` in RStudio (or set the working directory to the project root), then run:
+Open the project in RStudio and execute:
 
 ```r
 source("scripts/00_run_all.R")
 ```
 
-## Main outputs
+---
 
-Correction outputs:
-- `output/tables/correction_audit_trail.csv`
-- `output/tables/part_level_correction_summary.csv`
-- `output/tables/corrected_citing_records.csv`
+## Outputs
 
-Coupling outputs:
-- `output/tables/coupling_summary.csv`
-- `output/tables/coupling_classification_summary.csv`
-- `output/tables/foundation_counts.csv`
-- `output/tables/strand_summary.csv`
-- `output/tables/intellectual_heirs.csv`
-- `output/tables/intermediate_citers.csv`
-- `output/tables/surface_citers.csv`
-- `output/tables/temporal_summary.csv`
+### Tables
 
-Figures:
-- `output/figures/overlap_heatmap.png`
-- `output/figures/strand_comparison.png`
-- `output/figures/temporal_mean_shared.png`
-- `output/figures/temporal_strand.png`
-- `output/figures/shared_foundations_distribution.png`
-- `output/figures/top_foundations.png`
+| Category | Output |
+|-----------|---------|
+| Audit | correction_audit_trail.csv |
+| Audit | corrected_citing_records.csv |
+| Audit | part_level_correction_summary.csv |
+| Reconciliation | corpus_reconciliation.csv |
+| Reconciliation | record_level_correction_summary.csv |
+| Coupling | foundation_counts.csv |
+| Coupling | strand_summary.csv |
+| Coupling | intellectual_heirs.csv |
+| Coupling | temporal_summary.csv |
 
-## Important note
+### Figures
 
-The correction layer operates at the citing-record level for the coupling analysis. It also preserves Part-level correction information in the audit trail. Once the whole corpus is validated, the corrected corpus should be treated as the primary analysis corpus.
+| Figure |
+|---------|
+| overlap_heatmap.png |
+| strand_comparison.png |
+| temporal_mean_shared.png |
+| temporal_strand.png |
+| shared_foundations_distribution.png |
+| top_foundations.png |
 
+---
 
+## Reproducibility
 
-## Reconciliation outputs
+### Fully Reproducible
 
-This consolidated version adds explicit reconciliation reporting:
+- Workflow execution
+- Synthetic-data analysis
+- Table generation
+- Figure generation
+- Validation logic
 
-- `output/tables/corpus_reconciliation.csv`
-- `output/tables/record_level_correction_summary.csv`
-- `output/tables/correction_audit_trail.csv`
+### Requires Licensed Data
 
-The reconciliation separates Part-level correction annotations from record-level removals. This is important because a citing paper may be a false positive for one UP Part while remaining a genuine citer of another Part.
+- Reproduction of published quantitative results
+- Reconstruction of the original Web of Science corpus
 
+---
 
-## Final project note
+## Citation
 
-This version is the consolidated corrected-corpus workflow. It includes:
+If this repository is used in research, please cite the associated publication and software release.
 
-- corrected-corpus construction from the WoS-derived citing set;
-- explicit reconciliation of raw records, base exclusions, record-level removals, and final corpus size;
-- Part-level correction audit trail;
-- corrected percentage calculations for foundation frequencies;
-- adjusted figure dimensions and label placement for publication-quality plots.
+---
 
 ## License
 
-Code in this repository is offered under the MIT License (see `LICENSE`); fill
-in the copyright holder before publishing. The **synthetic** data in `data/raw/`
-is fabricated and carries no third-party rights. Real Web of Science data is
-proprietary to Clarivate and is **not** included or licensed here.
+Code is distributed under the MIT License.
+
+Synthetic data are fabricated for demonstration purposes and contain no proprietary Web of Science records.
+
+Real Web of Science data remain the property of Clarivate and are not distributed through this repository.
