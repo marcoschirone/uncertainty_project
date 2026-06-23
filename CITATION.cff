@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: “UP Bibliographic Coupling Project”
+message: “If you use this software, please cite it using the metadata below.”
+type: software
+
+authors:
+
+* family-names: Schirone
+    given-names: Marco
+    orcid: “https://orcid.org/0000-0002-4166-153X”
+
+abstract: >
+Reproducible R workflow for reconstructing and analysing the intellectual
+base of the Uncertainty Project through citation-corpus validation,
+correction-layer processing, intellectual-base reconstruction,
+bibliographic coupling, and temporal analysis. The repository includes
+a synthetic demonstration dataset that enables execution of the full
+workflow without redistribution of proprietary Web of Science data.
+
+repository-code: “https://github.com/marcoschirone/uncertainty_project”
+url: “https://github.com/marcoschirone/uncertainty_project”
+
+keywords:
+
+* bibliographic coupling
+* bibliometrics
+* scientometrics
+* information behaviour
+* uncertainty project
+* citation analysis
+* reproducible research
+* R
+
+license: MIT
+
+version: 1.0.0
