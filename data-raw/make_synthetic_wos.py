@@ -116,7 +116,7 @@ print(f"  uncertainty keys={len(uncertainty_keys)} cognitive keys={len(cognitive
 # Target corpus shape (mirrors the real study so the demo is recognisable)
 # --------------------------------------------------------------------------
 N_RAW          = 323
-N_PART_CITERS  = 221       # Part-citers within the corrected corpus
+N_PART_CITERS  = 241       # records citing >=1 Part (the 323 -> 241 step)
 N_SYNTH_FOUND  = 45        # extra fabricated (non-strand) foundations
 
 # --------------------------------------------------------------------------
@@ -225,15 +225,24 @@ all_uts = required + synth_uts
 assert len(all_uts) == N_RAW, (len(all_uts), N_RAW)
 
 # Corrected corpus (302) = raw - base_excl - rec_fp
-corrected = [u for u in all_uts if u not in base_excl and u not in rec_fp]
-# Choose which corrected records cite a Part (Part-citers, target 221).
-# Records that genuinely cite the UP in the correction layer (retain/add) must
-# be Part-citers; fill the rest from synthetic UTs.
-must_cite = [u for u in corrected if u in retain_add_uts]
-pool = [u for u in corrected if u not in must_cite]
+# Part-citers are chosen from the RAW set, because the 323 -> 241 filter in
+# scripts/02 runs before the correction layer. Mirror the real corpus:
+#   - every record with a retain/add annotation cites a Part
+#   - every record-level false positive is indexed as citing a Part (that is
+#     what makes it a false positive)
+#   - of the four base exclusions, three cite a Part (Pt3, Pt4 and the erratum
+#     all cite Pt1) while Pt2's own record does not
+base_non_citer   = {jasist_uts[0]}                 # Pt2 Wilson
+base_part_citers = set(base_excl) - base_non_citer
+
+must_cite = (set(retain_add_uts) | set(rec_fp) | base_part_citers) & set(all_uts)
+pool = [u for u in all_uts if u not in must_cite and u not in base_non_citer]
 random.shuffle(pool)
 n_more = max(0, N_PART_CITERS - len(must_cite))
-part_citers = set(must_cite) | set(pool[:n_more])
+part_citers = must_cite | set(pool[:n_more])
+
+# Corpus after the DOI filter, then after the correction layer
+corrected = [u for u in part_citers if u not in base_excl and u not in rec_fp]
 # remaining corrected records reach the UP only via a (synthetic) precursor
 
 PRECURSOR_CR = "Synthwilson TD, 1999, SYNTH INFORM PROCESS MANAG, V35, P839"
@@ -302,7 +311,9 @@ write_wos(os.path.join(RAW, "323_references.txt"), cit_records)
 print("\nWrote synthetic exports to data/raw/:")
 print(f"  citing_jasist5.txt : {len(up_records)} UP source records")
 print(f"  323_references.txt : {len(cit_records)} citing records")
-print(f"  -> corrected corpus (raw - base - rec_fp) = {len(corrected)}")
-print(f"  -> Part-citers (cite >=1 Part DOI)        = {len(part_citers)}")
+print(f"  -> Part-citers (323 -> 241 filter)        = {len(part_citers)}")
+print(f"     base exclusions among Part-citers      = {len(set(part_citers) & set(base_excl))}")
+print(f"     record-level false positives           = {len(set(part_citers) & set(rec_fp))}")
+print(f"  -> validated corpus (241 - base - rec_fp) = {len(corrected)}")
 print(f"  -> distinct foundation keys available     = {len(set(all_found_keys))}")
 print(f"  seed = {SEED}")

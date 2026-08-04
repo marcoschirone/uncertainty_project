@@ -1,5 +1,37 @@
 # Changelog
 
+## five-part-scope (August 2026)
+
+### Added
+
+- `scripts/02_read_and_parse_wos.R` now restricts the citing corpus to records
+  citing at least one of the five Parts by DOI. `part_dois` was defined in
+  `R/config.R` for this purpose but never used, so the pipeline implemented the
+  superseded eight-source path (323 - 4 - 17 = 302) rather than the published
+  five-Part path (241 - 3 - 17 = 221).
+- Synthetic demonstration exports are now committed to `data/raw/`. The README
+  had claimed they were present, but the directory held only `README.md` and
+  `UP_dois.csv`, so `source("scripts/00_run_all.R")` failed on a fresh clone.
+- `results/` holds the tables and figures from the licensed Web of Science
+  corpus reported in the paper, kept separate from `output/`, which holds the
+  synthetic demo run.
+
+### Changed
+
+- `data-raw/make_synthetic_wos.py` retuned so the synthetic corpus mirrors the
+  real chain: 323 raw records, 241 citing at least one Part, three base
+  exclusions among them, 17 record-level false positives, 221 validated.
+- README corrected throughout: the data notice, the run instructions, the
+  `data/private/` override, and the provenance of `UP_dois.csv`.
+
+### Not included
+
+`corrected_citing_records.csv`, the full Web of Science records for the 221
+citing papers, is withheld under the Clarivate licence. Accession numbers and
+DOIs sufficient to reconstruct it are in `data/raw/UP_dois.csv` and
+`results/tables/correction_audit_trail.csv`.
+
+
 ## github-synthetic-data
 
 Prepares the project for public release without proprietary data:

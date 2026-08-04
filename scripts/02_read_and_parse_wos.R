@@ -30,6 +30,30 @@ if (nrow(up_raw) != 5L) {
 up_cr  <- parse_wos_cr(up_file)
 cit_cr <- parse_wos_cr(cit_file)
 
+# ------------------------------------------------------------------
+# Five-Part scope: restrict the citing corpus to records citing at
+# least one of the five Parts by DOI. The raw export is assembled
+# against eight project-related documents, so it also contains records
+# that reach the Project only through a pre-2002 precursor. Those are
+# out of scope: the object of study is the 2002 five-paper series.
+# This is the 323 -> 241 step in the published corpus reconciliation.
+# ------------------------------------------------------------------
+part_pattern   <- paste(toupper(part_dois), collapse = "|")
+part_citer_uts <- unique(cit_cr$UT[grepl(part_pattern, toupper(cit_cr$CR))])
+
+n_retrieved <- length(unique(cit_cr$UT))
+cit_cr  <- cit_cr  %>% filter(UT %in% part_citer_uts)
+cit_raw <- cit_raw %>% filter(UT %in% part_citer_uts)
+
+cat("Citing records: ", n_retrieved, " retrieved -> ",
+    length(part_citer_uts), " citing at least one Part\n", sep = "")
+
+if (length(part_citer_uts) == 0L) {
+  stop("No citing record cites any of the five Parts by DOI. ",
+       "Check part_dois in R/config.R against the citing export.",
+       call. = FALSE)
+}
+
 up_cr  <- up_cr %>% filter(UT %in% all_five_uts)
 stopifnot("UP cited-reference set must cover all five Parts" =
             length(unique(up_cr$UT)) == 5L)

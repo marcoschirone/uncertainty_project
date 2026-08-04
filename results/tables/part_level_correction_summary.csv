@@ -1,0 +1,16 @@
+"part","action","status","n"
+"P1","remove","false_positive",5
+"P1","retain","confirmed",3
+"P2","remove","false_positive",2
+"P2","remove","inaccessible",1
+"P2","retain","confirmed",3
+"P2","retain","unavailable",1
+"P3","remove","false_positive",5
+"P3","remove","false_positive_for_part",3
+"P3","retain","unavailable",1
+"P4","add","false_negative",3
+"P4","remove","false_positive",6
+"P4","retain","confirmed",3
+"P4","retain","unavailable",1
+"P5","remove","false_positive",1
+"P5","retain","unavailable",2
