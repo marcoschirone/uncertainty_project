@@ -74,6 +74,19 @@ is_generic <- function(key) {
     startsWith(key, "*")
 }
 
+# A normalised key is unresolvable when it carries no publication year.
+# normalize_ref() builds the key from the first three comma-separated fields of
+# the CR string; when a reference has fewer than three fields it falls back to
+# the author name alone. In this corpus that happens for "in press" citations
+# such as "WILSON TD, IN PRESS INFORMATI 2" (Part 4) and
+# "SPINK A, IN PRESS INFORMATION" (Part 3), which reduce to "WILSON TD" and
+# "SPINK A". Such keys cannot match any citing paper's reference list and so
+# cannot contribute to bibliographic coupling. They are excluded on the same
+# grounds as generic and anonymous references.
+is_unresolvable <- function(key) {
+  !grepl("(^|[^0-9])(1[6-9]|20)[0-9]{2}([^0-9]|$)", key)
+}
+
 safe_pct <- function(x, denom, digits = 1) {
   if (length(denom) != 1) {
     stop("denom must be a single scalar value", call. = FALSE)

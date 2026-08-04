@@ -147,17 +147,23 @@ part_corrections <- tibble::tribble(
 
   # Ford 2004a P4 add: see Group B above (WOS:000227193400002).
 
-  # Ford 2004b (JASIST 55(13), WOS:000220651200006):
-  # P4 cited substantively at two locations (p.1176 and p.1177); coded applied.
-  # No other UP Parts found. Confirmed by close-reading from PDF.
+  # Ford (J Doc 60(2), 183-225, WOS:000220651200006) "Towards a model of learning
+  # for educational informatics": P4 cited substantively at p.191 and p.193.
+  # WoS flags this record for P3 only, which close reading found incorrect, so
+  # P4 is added and the spurious P3 attribution is removed below.
   "WOS:000220651200006", "P4", "add", "false_negative",
-    "Ford 2004b (JASIST 55(13)): P4 applied citation (p.1176 and p.1177; cognitive style effects on searching); confirmed by close-reading from PDF",
+    "Ford (J Doc 60(2)): P4 applied citation (p.191 and p.193; P4 findings as foundational evidence for educational-informatics model); confirmed by close-reading from PDF",
+  "WOS:000220651200006", "P3", "remove", "false_positive_for_part",
+    "Ford (J Doc 60(2)): WoS flags P3 incorrectly; close-reading confirms P4 is the cited Part. Record retained via the P4 add above",
 
-  # Ford 2004c (J Doc 60(2), WOS:000224364700006):
-  # P4 cited substantively at two locations (p.191 and p.193); coded applied.
-  # No other UP Parts found. Confirmed by close-reading from PDF.
+  # Ford (JASIST 55(13), 1169-1182, WOS:000224364700006) "Creativity and
+  # convergence in information science research": P4 cited at p.1176 and p.1177.
+  # WoS flags this record for P3 only, which close reading found incorrect, so
+  # P4 is added and the spurious P3 attribution is removed below.
   "WOS:000224364700006", "P4", "add", "false_negative",
-    "Ford 2004c (J Doc 60(2)): P4 applied citation (p.191 and p.193; P4 findings as foundational evidence for educational-informatics model); confirmed by close-reading from PDF",
+    "Ford (JASIST 55(13)): P4 applied citation (p.1176 and p.1177; cognitive style effects on searching); confirmed by close-reading from PDF",
+  "WOS:000224364700006", "P3", "remove", "false_positive_for_part",
+    "Ford (JASIST 55(13)): WoS flags P3 incorrectly; close-reading confirms P4 is the cited Part. Record retained via the P4 add above",
 
   # ── Group E: unavailable papers — retained in corpus, coded unavailable ──────────────────────────
 

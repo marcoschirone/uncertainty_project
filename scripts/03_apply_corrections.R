@@ -5,7 +5,14 @@ cit_cr  <- readRDS(file.path(processed_dir, "cit_cr.rds"))
 # then apply validation corrections.
 raw_uts <- unique(cit_cr$UT)
 
-base_exclusions <- uts_drop_base
+# Base exclusions are DEFINED in lookups.R as jasist_uts + erratum_uts (4 records),
+# but only those present in the retrieved set can actually be removed from it.
+# Pt2's own record is absent from the five-Part citing set, so 3 of the 4 apply.
+# Counting the defined list rather than the applicable one made the reconciliation
+# table report 241 - 4 - 17 for a corpus that actually holds 221.
+base_exclusions_defined <- uts_drop_base
+base_exclusions         <- intersect(uts_drop_base, raw_uts)
+base_exclusions_absent  <- setdiff(uts_drop_base, raw_uts)
 
 # ------------------------------------------------------------------
 # Correction logic
@@ -127,7 +134,7 @@ corpus_reconciliation <- tibble::tibble(
 expected_final <- length(raw_uts) - length(base_exclusions) - length(record_level_false_positives)
 
 if (expected_final != length(corrected_uts)) {
-  warning(
+  stop(
     "Reconciliation mismatch: expected ",
     expected_final,
     " but corrected_uts has ",
@@ -137,7 +144,12 @@ if (expected_final != length(corrected_uts)) {
 }
 
 cat("Raw citing records:", length(raw_uts), "\n")
-cat("Base exclusions:", length(base_exclusions), "\n")
+cat("Base exclusions defined:", length(base_exclusions_defined),
+    "| applicable to retrieved set:", length(base_exclusions),
+    "| absent:", length(base_exclusions_absent), "\n")
+if (length(base_exclusions_absent) > 0) {
+  cat("  absent from retrieved set:", paste(base_exclusions_absent, collapse = ", "), "\n")
+}
 cat("Part-level remove annotations:", sum(part_corrections$action == "remove"), "\n")
 cat("Unique remove-candidate records:", length(remove_candidates), "\n")
 cat("Mixed records retained:", length(intersect(remove_candidates, retain_or_add)), "\n")
