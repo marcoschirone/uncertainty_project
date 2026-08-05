@@ -1,4 +1,4 @@
-# 1. Read the corrected 302-record corpus
+# 1. Read the corrected 221-record corpus
 citing_corrected <- read.csv(
   "output/tables/corrected_citing_records.csv",
   stringsAsFactors = FALSE
@@ -16,7 +16,7 @@ citing_corrected <- citing_corrected %>%
     # Part-to-DOI mapping (matches R/config.R):
     #   P1 Spink  = 10.1002/ASI.10081  (JASIST V53, P695)
     #   P2 Wilson = 10.1002/ASI.10082
-    #   P3 Spink  = 10.1002/ASI.10083  (JASIST V53, P842)
+    #   P3 Spink  = 10.1002/ASI.10083  (JASIST V53, P716)
     #   P4 Ford   = 10.1002/ASI.10084
     #   P5 Ellis  = 10.1002/ASI.10133
     cites_P1 = str_detect(CR, fixed("10.1002/ASI.10081")) |
@@ -26,7 +26,7 @@ citing_corrected <- citing_corrected %>%
       str_detect(CR, regex("WILSON TD?,\\s*2002,\\s*J AM SOC INF",
                            ignore_case = TRUE)),
     cites_P3 = str_detect(CR, fixed("10.1002/ASI.10083")) |
-      str_detect(CR, regex("SPINK A,\\s*2002,\\s*J AM SOC INF SCI TEC,\\s*V53,\\s*P842",
+      str_detect(CR, regex("SPINK A,\\s*2002,\\s*J AM SOC INF SCI TEC,\\s*V53,\\s*P716",
                            ignore_case = TRUE)),
     cites_P4 = str_detect(CR, fixed("10.1002/ASI.10084")) |
       str_detect(CR, regex("FORD N,\\s*2002,\\s*J AM SOC INF SCI TEC",
@@ -73,9 +73,8 @@ citing_corrected <- citing_corrected %>%
 # 4. Tom's three figures — recomputed
 # Denominator: Part-citers only (records citing >= 1 of the five Parts after
 # corrections), matching the 06 bibliographic-coupling corpus (n = 221).
-# The full corrected corpus (302) includes records that reach the UP only via
-# the pre-2002 precursors and is NOT the correct base for a Part-citation
-# distribution.
+# Under the five-Part scope this file is already restricted to Part-citers,
+# so no further filtering is required.
 cat("\n===== RECOMPUTED FIGURES FOR TOM =====\n\n")
 
 part_citers <- citing_corrected %>% filter(n_parts_cited >= 1)
