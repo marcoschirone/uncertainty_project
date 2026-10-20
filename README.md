@@ -1,6 +1,6 @@
 # The reception of the Uncertainty Project
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21804423.svg)](https://doi.org/10.5281/zenodo.21804423)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21804423-blue.svg)](https://doi.org/10.5281/zenodo.21804423)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![pipeline](https://github.com/marcoschirone/uncertainty_project/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/marcoschirone/uncertainty_project/actions/workflows/pipeline.yaml)
 
