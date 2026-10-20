@@ -1,70 +1,52 @@
-# Published results
+# Results from the licensed corpus
 
-Tables and figures from the analysis of the **licensed** Web of Science Core
-Collection corpus. These are the results reported in the paper, not the
-illustrative output of the synthetic demonstration data in `data/raw/`.
+Tables and figures computed from the Web of Science Core Collection exports
+(citing records retrieved 22 June 2026, Part records exported 11 May 2026).
+The pipeline writes this folder whenever it runs on the licensed data; the
+synthetic demonstration never touches it.
 
-## Why these files can be shared
+## What is included and what is withheld
 
-The Clarivate licence restricts redistribution of Web of Science *records*. It
-does not restrict statistics, classifications and judgements derived by the
-authors. Everything here falls into the second category:
+The Clarivate licence restricts redistribution of Web of Science records, not
+the counts, classifications and judgements derived from them. This folder holds
+only the latter:
 
-- aggregate counts and summaries computed from the corpus
-- the correction layer, which records the authors' close-reading judgements
-- the intellectual base, which consists of the reference lists of five
-  published papers
-- citer classifications carrying only accession number, title, year, source and
-  derived coupling measures
+- aggregate tables and test results;
+- the correction layer and its audit trail, which record the authors'
+  close-reading judgements;
+- the intellectual base, i.e. reference keys from the reference lists of the
+  five Parts;
+- per-record tables restricted to accession number, DOI, title, year, source,
+  author names and derived measures.
 
-Deliberately **excluded**: `corrected_citing_records.csv`, the full Web of
-Science records for the 221 citing papers, containing abstracts, complete
-cited-reference fields, author addresses and funding text. That file is
-Clarivate's data and is not redistributed. Readers with a subscription can
-reconstruct it from the accession numbers and DOIs in `data/raw/UP_dois.csv`
-together with `tables/correction_audit_trail.csv`.
+Withheld: the full citing records (`corrected_citing_records.csv`: abstracts,
+cited-reference fields, addresses, funding) and the author addresses in
+`author_overlap_records.csv`. `tables/corpus_records.csv` lists the accession
+number and DOI of each of the 241 retrieved records, with its status, so that
+a subscriber can rebuild the corpus.
 
 ## Contents
 
-### Corpus construction
-
-| File | Description |
+| Path | Content |
 |---|---|
+| `tables/corpus_records.csv` | The 241 records: status (retained, removed, base exclusion), validated Parts, removal reason |
 | `tables/corpus_reconciliation.csv` | 241 retrieved, 3 base exclusions, 17 false positives, 221 validated |
-| `tables/record_level_correction_summary.csv` | Record-level correction counters |
-| `tables/part_level_correction_summary.csv` | Corrections by Part and action |
-| `tables/correction_audit_trail.csv` | Every Part-level judgement, with reasons |
-
-### Intellectual base
-
-| File | Description |
-|---|---|
-| `tables/up_foundations.csv` | The 134 foundational references |
-| `tables/foundation_in_up.csv` | Foundations by number of citing Parts |
-| `tables/foundation_counts.csv` | The 90 reproduced foundations, with citer counts and strand |
-| `tables/foundation_exclusion_summary.csv` | Exclusions by reason |
+| `tables/correction_audit_trail.csv` | Every Part-level judgement and how it was applied |
+| `tables/*_correction_summary.csv` | Corrections by Part and by record |
+| `tables/up_foundations.csv`, `foundation_in_up.csv`, `foundation_exclusion_summary.csv` | The 134 foundations and the exclusions |
 | `tables/overlap_matrix.csv` | Foundations shared between Parts |
-
-### Coupling and inheritance
-
-| File | Description |
-|---|---|
-| `tables/coupling_summary.csv` | 221 citers, 178 sharing at least one foundation, mean 3.45 |
-| `tables/coupling_classification_summary.csv` | 105 heirs, 73 intermediate, 43 surface |
-| `tables/intellectual_heirs.csv` | Papers sharing three or more foundations |
-| `tables/intermediate_citers.csv` | Papers sharing one or two |
-| `tables/surface_citers.csv` | Papers citing a Part but sharing none |
-| `tables/strand_summary.csv` | Uncertainty 35/547, cognitive styles 21/129, other 34/86 |
-| `tables/temporal_summary.csv` | Foundation reproduction by publication year |
-
-### Figures
-
-`figures/` holds the six plots reported in the paper: overlap heatmap, strand
-comparison, temporal mean shared, temporal strand, shared-foundations
-distribution, and top foundations.
+| `tables/coupling_summary.csv`, `coupling_classification_summary.csv` | Coupling of the 221 papers: 178 share a foundation; 105 / 73 / 43 high, limited and no overlap |
+| `tables/intellectual_heirs.csv`, `intermediate_citers.csv`, `surface_citers.csv` | The papers in each class |
+| `tables/foundation_counts.csv`, `strand_summary.csv`, `temporal_summary.csv` | Reproduced foundations, strands, years |
+| `tables/revision_R1/` | Sensitivity, Part-specific, temporal, survivorship, venue and claim-check tables added in revision |
+| `figures/`, `figures/revision_R1/` | The figures |
+| `reported_numbers.csv` | Every number reported in the article, recomputed |
+| `logs/session_info.txt` | Corpus totals and the R session of the run |
 
 ## Provenance
 
-Generated by `scripts/00_run_all.R` with `data/private/` populated with the
-licensed Web of Science exports. Web of Science Core Collection, accessed
-through the authors' institutional subscription. R 4.6.0, bibliometrix 5.3.0.
+The tables in this version were generated on 20 October 2026 with R 4.3.3 and
+bibliometrix 5.3.0 (`logs/session_info.txt`). The run of 30 September 2026
+with R 4.6.1 gave the same values, except the Wilcoxon p-value in
+`revision_R1/strand_contrast_all_foundations.csv` (0.137 instead of 0.138) and
+the last printed digit of one Jaccard index.

@@ -1,12 +1,17 @@
-# data/private — real (proprietary) inputs go here
+# Licensed inputs
 
-This directory is **git-ignored** (except this README). Place the real, proprietary
-Web of Science Core Collection exports here to run the actual analysis:
+This folder is ignored by git except for this file. Put the Web of Science
+plain-text exports here to run the analysis on the licensed corpus:
 
 ```
-data/private/citing_jasist5.txt
-data/private/323_references.txt
+data/private/wos_parts.txt     the five Part records
+data/private/wos_citing.txt    records citing the Parts
 ```
 
-`R/config.R` prefers these over the synthetic demo files in `data/raw/`, so the
-real run never modifies tracked files. Do not commit Web of Science data.
+The published results use the export of the 241 Part-citing records of
+22 June 2026 and the Part export of 11 May 2026.
+
+Optional: `manuscript_values.csv`, the numbers printed in the article, keyed by
+the ids of `output/checks/reported_numbers.csv`. When present, the run writes
+`output/checks/manuscript_check.csv`. Columns: `id`, `revised`, `submitted`,
+`location`, `revised_judgement`, `submitted_judgement`, `note`.

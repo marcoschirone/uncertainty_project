@@ -1,0 +1,31 @@
+Package: uncertaintyproject
+Title: Reception of the Uncertainty Project: Bibliographic Coupling and Citation Analysis
+Version: 1.1.0.9000
+Authors@R:
+    person("Marco", "Schirone", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4166-153X"))
+Description: Research compendium for the study of the reception of the five
+    Uncertainty Project papers (JASIST, 2002). A targets pipeline validates a
+    Web of Science citing corpus with a close-reading correction layer,
+    reconstructs the intellectual base of the five Parts, couples each citing
+    paper to it, and runs the sensitivity, temporal and citation-function
+    analyses reported in the article. Synthetic demonstration data allow the
+    pipeline to run without the licensed exports.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.3)
+Imports:
+    bibliometrix (>= 4.0),
+    dplyr (>= 1.1),
+    ggplot2 (>= 3.4),
+    purrr,
+    stringr,
+    targets (>= 1.5),
+    tibble,
+    tidyr
+Suggests:
+    lintr,
+    testthat (>= 3.0.0),
+    visNetwork
+Config/testthat/edition: 3

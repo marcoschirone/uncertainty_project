@@ -1,0 +1,6 @@
+"part","validated_citers","primary_author_selfcit","institutional","any_author_overlap","unavailable","external_primary_rule","external_any_rule","wos_doi_count_ms","table1_external_ms","gap_vs_table1"
+"P1",55,4,1,4,0,50,50,60,40,10
+"P2",101,0,1,6,1,100,94,104,100,0
+"P3",44,7,1,8,1,36,35,52,30,6
+"P4",66,4,1,5,1,61,60,69,62,-1
+"P5",31,1,2,2,1,29,28,32,29,0

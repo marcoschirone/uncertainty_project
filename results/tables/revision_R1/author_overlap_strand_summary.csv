@@ -1,0 +1,13 @@
+"scenario","strand","reproduced_foundations","citer_links","mean_citers_per_foundation"
+"S0 Baseline (v1.0.0)","Cognitive styles",21,129,6.1
+"S0 Baseline (v1.0.0)","Other",34,86,2.5
+"S0 Baseline (v1.0.0)","Uncertainty",35,547,15.6
+"S1 Exclude author-overlap citers","Cognitive styles",18,86,4.8
+"S1 Exclude author-overlap citers","Other",27,63,2.3
+"S1 Exclude author-overlap citers","Uncertainty",35,470,13.4
+"S2 Exclude group-authored foundations","Cognitive styles",12,78,6.5
+"S2 Exclude group-authored foundations","Other",30,75,2.5
+"S2 Exclude group-authored foundations","Uncertainty",24,343,14.3
+"S3 Exclude both","Cognitive styles",9,53,5.9
+"S3 Exclude both","Other",23,54,2.3
+"S3 Exclude both","Uncertainty",24,299,12.5

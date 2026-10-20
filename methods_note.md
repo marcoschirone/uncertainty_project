@@ -1,21 +1,52 @@
 # Methods note
 
-## Corpus scope
+## Scope
 
-The constitutive corpus is the five JASIST 2002 Parts (Spink Pt1, Wilson Pt2,
-Spink Pt3, Ford Pt4, Ellis Pt5). The three pre-2002 precursors (Wilson 1999
-*IP&M*; Wilson 1999 conference; Ford et al. 2000 ASIS) are contextual and are
-not used to construct the intellectual base. Because the precursors are no
-longer treated as part of the series, Wilson (1999, *IP&M*) re-enters the
-analysis as an external foundation reference rather than being suppressed as a
-self-citation.
+The object of study is the five JASIST 2002 Parts (Spink et al., Part 1;
+Wilson et al., Part 2; Spink et al., Part 3; Ford et al., Part 4; Ellis et al.,
+Part 5). The three pre-2002 precursors (Wilson 1999 *IP&M*, Wilson 1999
+conference paper, Ford et al. 2000 ASIS) are context, not Parts. The intellectual
+base is therefore built from the references of the five Parts only, and only
+references to the Parts themselves are excluded as self-references. Earlier
+outputs of the research programme cited by a Part count as external
+foundations; in this corpus that admits Wilson (1999, *Exploring the contexts
+of information behaviour*) and Wilson (1997, uncertainty). Wilson (1999, *IP&M*)
+is cited by no Part and so does not enter the base.
 
-The forward citation corpus was first assembled from Web of Science and then validated using a correction layer derived from close reading. Confirmed false-positive citing records were removed from the forward corpus, while confirmed missed citations were retained or added where the record was present in the raw export. The resulting corpus is therefore a curated WoS-derived citation corpus.
+## Corpus construction
 
-The correction layer preserves Part-level audit information, but the bibliographic coupling is computed at the citing-record level. This means that mixed cases, where a paper is false-positive for one Part but a genuine citation for another, are retained in the corrected forward corpus.
+The citing export may cover more documents than the five Parts. Records that do
+not cite a Part by DOI are dropped (the 323 to 241 step of the first retrieval).
+Three records are then excluded as intra-series cross-citations or an erratum
+(`data/corrections/base_exclusions.csv`; the fourth listed record, Part 2's own,
+does not cite a Part and is absent from the 241).
 
-Once full-corpus validation is complete, update `R/corrections.R` and rerun `scripts/00_run_all.R`.
+Close reading is recorded per Part and applied per record
+(`data/corrections/part_corrections.csv`):
 
-## Reconciliation language
+- `remove`: the Part is not cited in the body text;
+- `retain`: the citation is confirmed;
+- `add`: a citation missed by Web of Science.
 
-For manuscript reporting, use the `corpus_reconciliation.csv` output rather than manually calculating corpus changes from Part-level corrections. The number of Part-level false-positive annotations is not necessarily equal to the number of records removed, because mixed cases are retained where another citation to the UP is verified.
+A record leaves the corpus only when every annotation on it is a removal. Mixed
+records, false positives for one Part that cite another, stay. The number of
+Part-level removal annotations (23) therefore differs from the number of
+records removed (17).
+
+For reporting, use `corpus_reconciliation.csv` and `corpus_records.csv` rather
+than counting annotations.
+
+## Reference keys
+
+Each cited reference is reduced to its first three comma-separated fields,
+normally author, year and source, upper-cased. Known variants are merged with
+`data/reference/merge_rules.csv`. Keys without a year, such as in-press
+citations, are excluded from the base because they reduce to an author name and
+would match unrelated references.
+
+## Part attribution
+
+A citing record cites a Part when its references contain the Part's DOI or the
+2002 volume-53 start page, after which the corrections are applied. Attribution
+is used by the per-Part and Part-specific analyses; the coupling itself is
+computed per record.

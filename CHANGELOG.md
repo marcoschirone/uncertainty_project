@@ -1,5 +1,60 @@
 # Changelog
 
+## 1.1.0 (in preparation)
+
+Analyses added in the first round of review, and a rebuild of the workflow.
+
+### Workflow
+
+- The numbered scripts are replaced by a `targets` pipeline (`_targets.R`, with
+  functions in `R/`). Steps rerun only when their code or inputs change.
+- The correction layer and all lookup lists are CSV files under
+  `data/corrections/` and `data/reference/` instead of R code.
+- The cited-reference parser is vectorised (6-20 times faster) and gives
+  identical output.
+- Unit tests (`tests/testthat/`), lint configuration and a GitHub Actions
+  workflow that runs the tests and the whole pipeline on the synthetic data.
+- Inputs are `wos_parts.txt` and `wos_citing.txt`. Any citing export that
+  contains the Part citers can be used; records not citing a Part by DOI are
+  dropped.
+- A licensed run refreshes `results/`, withholding the full citing records and
+  author addresses.
+- `results/tables/corpus_records.csv` lists the accession number, DOI and year
+  of the 241 retrieved records, with status, validated Parts and removal
+  reason, as stated in the article's data-availability section.
+- `output/checks/reported_numbers.csv` recomputes every number reported in the
+  article; with `data/private/manuscript_values.csv` the run compares them with
+  the text.
+
+### Analyses added
+
+- Author-overlap sensitivity: citing papers with any Project author, and
+  foundations first-authored by the Project team, excluded in turn and together.
+- Part-specific coupling of each Part's own and exclusive references, and the
+  number of Parts cited per record.
+- Temporal trends with a citation-ageing baseline (foundations per pre-2002
+  reference), five-year windows with bootstrap intervals, and annual counts.
+- Survivorship: reproduction rates for all 134 foundations by strand, Part of
+  origin, period, source type and authorship.
+- Venues and WoS Research Areas per Part.
+- Checks of the named research groups, repeat authors, and the tests of the
+  submitted Table 1.
+- Table 1 rebuilt from the coding sheet on the 221-paper corpus under the
+  primary-author and any-author rules, with per-Part reconciliation and
+  false-positive rates; paper-level association of citation function with
+  reference overlap; Cohen's kappa for a blind second coder.
+
+### Verification
+
+On the licensed data the pipeline reproduces the 41 tables of the previous
+scripts byte for byte. The number of shared foundations and every corpus count
+are unchanged.
+
+### Before release
+
+- Add the completed coding sheets to `data/manual/` and rerun.
+- Update `CITATION.cff` (version, date) and the README badge to the 1.1.0 record.
+
 ## five-part-scope (August 2026)
 
 ### Added

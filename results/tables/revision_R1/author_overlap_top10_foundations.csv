@@ -1,0 +1,41 @@
+"pct","strand","scenario","ref_key","n_citers"
+27.6,"Uncertainty","S0 Baseline (v1.0.0)","WILSON TD, 1999, J DOC",61
+22.6,"Uncertainty","S0 Baseline (v1.0.0)","KUHLTHAU CC, 1993, J DOC",50
+20.8,"Uncertainty","S0 Baseline (v1.0.0)","KUHLTHAU CC, 1991, J AM SOC INFORM SCI",46
+14.5,"Uncertainty","S0 Baseline (v1.0.0)","BELKIN NJ, 1982, J DOC",32
+13.6,"Uncertainty","S0 Baseline (v1.0.0)","INGWERSEN P, 1996, J DOC",30
+13.1,"Uncertainty","S0 Baseline (v1.0.0)","KUHLTHAU C.C., 1993, SEEKING MEANING: A PROCESS APPROACH TO LIBRARY AND INFORMATION SERVICES",29
+10.9,"Uncertainty","S0 Baseline (v1.0.0)","BELKIN NJ, 1980, CAN J INFORM SCI",24
+10.4,"Uncertainty","S0 Baseline (v1.0.0)","ELLIS D, 1989, J DOC",23
+10,"Uncertainty","S0 Baseline (v1.0.0)","VAKKARI P, 2001, J DOC",22
+10,"Uncertainty","S0 Baseline (v1.0.0)","WILSON TD, 1997, INFORM PROCESS MANAG",22
+27.2,"Uncertainty","S1 Exclude author-overlap citers","WILSON TD, 1999, J DOC",55
+23.3,"Uncertainty","S1 Exclude author-overlap citers","KUHLTHAU CC, 1993, J DOC",47
+19.8,"Uncertainty","S1 Exclude author-overlap citers","KUHLTHAU CC, 1991, J AM SOC INFORM SCI",40
+14.4,"Uncertainty","S1 Exclude author-overlap citers","BELKIN NJ, 1982, J DOC",29
+12.4,"Uncertainty","S1 Exclude author-overlap citers","INGWERSEN P, 1996, J DOC",25
+12.4,"Uncertainty","S1 Exclude author-overlap citers","KUHLTHAU C.C., 1993, SEEKING MEANING: A PROCESS APPROACH TO LIBRARY AND INFORMATION SERVICES",25
+11.4,"Uncertainty","S1 Exclude author-overlap citers","BELKIN NJ, 1980, CAN J INFORM SCI",23
+10.4,"Uncertainty","S1 Exclude author-overlap citers","WILSON TD, 1997, INFORM PROCESS MANAG",21
+9.4,"Uncertainty","S1 Exclude author-overlap citers","VAKKARI P, 2001, J DOC",19
+9.4,"Uncertainty","S1 Exclude author-overlap citers","WILSON TD, 1981, J DOC",19
+22.6,"Uncertainty","S2 Exclude group-authored foundations","KUHLTHAU CC, 1993, J DOC",50
+20.8,"Uncertainty","S2 Exclude group-authored foundations","KUHLTHAU CC, 1991, J AM SOC INFORM SCI",46
+14.5,"Uncertainty","S2 Exclude group-authored foundations","BELKIN NJ, 1982, J DOC",32
+13.6,"Uncertainty","S2 Exclude group-authored foundations","INGWERSEN P, 1996, J DOC",30
+13.1,"Uncertainty","S2 Exclude group-authored foundations","KUHLTHAU C.C., 1993, SEEKING MEANING: A PROCESS APPROACH TO LIBRARY AND INFORMATION SERVICES",29
+10.9,"Uncertainty","S2 Exclude group-authored foundations","BELKIN NJ, 1980, CAN J INFORM SCI",24
+10,"Uncertainty","S2 Exclude group-authored foundations","VAKKARI P, 2001, J DOC",22
+8.1,"Uncertainty","S2 Exclude group-authored foundations","DERVIN B., 1992, QUALITATIVE RES INFO",18
+8.1,"Cognitive styles","S2 Exclude group-authored foundations","PASK G, 1976, BRIT J EDUC PSYCHOL",18
+7.7,"Cognitive styles","S2 Exclude group-authored foundations","PALMQUIST RA, 2000, J AM SOC INFORM SCI",17
+23.3,"Uncertainty","S3 Exclude both","KUHLTHAU CC, 1993, J DOC",47
+19.8,"Uncertainty","S3 Exclude both","KUHLTHAU CC, 1991, J AM SOC INFORM SCI",40
+14.4,"Uncertainty","S3 Exclude both","BELKIN NJ, 1982, J DOC",29
+12.4,"Uncertainty","S3 Exclude both","INGWERSEN P, 1996, J DOC",25
+12.4,"Uncertainty","S3 Exclude both","KUHLTHAU C.C., 1993, SEEKING MEANING: A PROCESS APPROACH TO LIBRARY AND INFORMATION SERVICES",25
+11.4,"Uncertainty","S3 Exclude both","BELKIN NJ, 1980, CAN J INFORM SCI",23
+9.4,"Uncertainty","S3 Exclude both","VAKKARI P, 2001, J DOC",19
+7.9,"Uncertainty","S3 Exclude both","DERVIN B., 1992, QUALITATIVE RES INFO",16
+6.4,"Cognitive styles","S3 Exclude both","PALMQUIST RA, 2000, J AM SOC INFORM SCI",13
+6.4,"Cognitive styles","S3 Exclude both","PASK G, 1976, BRIT J EDUC PSYCHOL",13

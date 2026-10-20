@@ -1,0 +1,51 @@
+Bibliographic coupling to the Uncertainty Project intellectual base
+Date: 2026-10-20 08:57:28 CEST
+Input: licensed Web of Science exports (data/private)
+
+UP papers: 5 | Citing (raw): 241 | Citing (corrected): 221
+Foundations: 134 | High overlap: 105 | No overlap: 43
+
+Record correction summary:
+  raw_wos_records base_exclusions part_level_remove_annotations
+1             241               3                            23
+  unique_remove_candidate_records mixed_records_retained
+1                              22                      5
+  record_level_false_positives_removed manual_additions_present_in_raw_export
+1                                   17                                      3
+  manual_additions_missing_from_raw_export corrected_records
+1                                        0               221
+
+R version 4.3.3 (2024-02-29)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 24.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Europe/Stockholm
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ggplot2_3.4.4 tibble_3.2.1  purrr_1.0.2   stringr_1.5.1 tidyr_1.3.1  
+[6] dplyr_1.1.4   targets_1.5.1
+
+loaded via a namespace (and not attached):
+ [1] base64url_1.4      gtable_0.3.4       compiler_4.3.3     tidyselect_1.2.0  
+ [5] callr_3.7.5        scales_1.3.0       yaml_2.3.8         R6_2.5.1          
+ [9] generics_0.1.3     igraph_1.6.0       knitr_1.45         backports_1.4.1   
+[13] munsell_0.5.0      pillar_1.9.0       rlang_1.1.3        utf8_1.2.4        
+[17] stringi_1.8.3      xfun_0.41          cli_3.6.2          withr_2.5.0       
+[21] magrittr_2.0.3     ps_1.7.6           digest_0.6.34      grid_4.3.3        
+[25] processx_3.8.3     secretbase_0.5.0   lifecycle_1.0.4    vctrs_0.6.5       
+[29] glue_1.7.0         data.table_1.14.10 farver_2.1.1       codetools_0.2-19  
+[33] fansi_1.0.5        colorspace_2.1-0   tools_4.3.3        pkgconfig_2.0.3   

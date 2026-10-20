@@ -1,0 +1,5 @@
+"scenario","n_citers","n_foundations","with_shared","pct_with_shared","heirs","pct_heirs","intermediate","surface","mean_shared","median_shared","max_shared","mean_shared_unc","mean_shared_cs","n_reproduced"
+"S0 Baseline (v1.0.0)",221,134,178,80.5,105,47.5,73,43,3.45,2,30,2.48,0.58,90
+"S1 Exclude author-overlap citers",202,134,160,79.2,92,45.5,68,42,3.06,2,16,2.33,0.43,80
+"S2 Exclude group-authored foundations",221,96,155,70.1,75,33.9,80,66,2.24,1,22,1.55,0.35,66
+"S3 Exclude both",202,96,140,69.3,62,30.7,78,62,2.01,1,10,1.48,0.26,56

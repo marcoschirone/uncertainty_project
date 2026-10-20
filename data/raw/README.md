@@ -1,46 +1,27 @@
-# data/raw — SYNTHETIC demonstration data
+# Synthetic demonstration data
 
-The two files here are **synthetic**. They are *not* Web of Science data and
-they do *not* reproduce the published results.
+`wos_parts.txt` and `wos_citing.txt` are invented records in the Web of Science
+plain-text format. They are not Web of Science data and do not reproduce the
+published results. Do not cite numbers computed from them.
 
-| File | Role |
-|------|------|
-| `citing_jasist5.txt` | Five synthetic "Uncertainty Project" Part records (source set for the intellectual base). |
-| `323_references.txt` | 323 synthetic citing records. |
+| File | Content |
+|---|---|
+| `wos_parts.txt` | Five synthetic Part records with reference lists |
+| `wos_citing.txt` | 323 synthetic citing records, 241 of which cite a Part |
+| `UP_dois.csv` | The 195 distinct DOIs of the real citing records, kept from v1.0.0; `results/tables/corpus_records.csv` supersedes it with accession numbers and DOIs of all 241 |
 
-## What is real and what is fabricated
+What is real: the accession numbers and DOIs of the five Parts, the accession
+numbers used in the correction layer, and the reference keys of the strand
+classification. These are identifiers already published in `data/`. Everything
+else (titles, authors, venues, years, abstracts and the reference lists of the
+citing records) is generated.
 
-- **Fabricated:** every record's title, authors, abstract, address, journal,
-  year, citation count, and the specific reference list of each *citing* paper.
-- **Kept from the code (so the pipeline runs):** the five Part UTs and DOIs
-  (`R/config.R`), the citing-record UTs acted on by the correction layer
-  (`R/corrections.R`), and the foundational reference *keys* used for strand
-  classification (`R/lookups.R`). These are bibliographic identifiers/keys that
-  already ship in the code; no proprietary WoS record content is included.
+The files are produced by `data-raw/make_synthetic_wos.py`, which reads
+`data/reference/` and `data/corrections/` so that the identifiers match. Rerun
+it after editing those files:
 
-Running the pipeline on these files reproduces the **shape** of the analysis —
-corpus reconciliation (323 → 302 → 221), a right-skewed coupling distribution,
-and uncertainty-vs-cognitive-styles strand asymmetry — but the numbers are
-illustrative only. **Do not cite figures produced from synthetic data.**
-
-## Regenerating
-
-```
+```bash
 python3 data-raw/make_synthetic_wos.py
 ```
 
-The generator is deterministic (fixed seed) and reads `R/config.R`,
-`R/corrections.R`, and `R/lookups.R` so the fabricated identifiers stay in sync
-with the code.
-
-## Running on the real (proprietary) data
-
-Do not overwrite these tracked files. Instead place your real WoS exports in
-`data/private/` (which is git-ignored):
-
-```
-data/private/citing_jasist5.txt
-data/private/323_references.txt
-```
-
-`R/config.R` automatically prefers `data/private/` when those files exist.
+The generator is deterministic (seed 20020621).
