@@ -16,12 +16,12 @@ classification. These are identifiers already published in `data/`. Everything
 else (titles, authors, venues, years, abstracts and the reference lists of the
 citing records) is generated.
 
-The files are produced by `data-raw/make_synthetic_wos.py`, which reads
+The files are produced by `data-raw/make_synthetic_wos.R`, which reads
 `data/reference/` and `data/corrections/` so that the identifiers match. Rerun
 it after editing those files:
 
 ```bash
-python3 data-raw/make_synthetic_wos.py
+Rscript data-raw/make_synthetic_wos.R
 ```
 
 The generator is deterministic (seed 20020621).

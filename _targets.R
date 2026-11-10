@@ -49,7 +49,7 @@ list(
 
   # Citation-function coding -------------------------------------------------
   tar_target(table1, table1_analysis(coding, inputs, wos, ref, settings)),
-  tar_target(function_overlap, function_overlap_analysis(coding, inputs, settings)),
+  tar_target(function_overlap, function_overlap_analysis(coding, inputs, ref, settings)),
   tar_target(reliability, reliability_analysis(coding, settings)),
 
   # Reported numbers ----------------------------------------------------------

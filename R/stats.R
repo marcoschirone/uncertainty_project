@@ -59,6 +59,40 @@ cohen_kappa <- function(a, b, levels) {
   c(agreement = po, kappa = k, n = n)
 }
 
+#' Agreement coefficients for two coders of the same items (nominal codes)
+#'
+#' Returns raw agreement, Cohen's kappa, Scott's pi, Krippendorff's alpha
+#' (nominal, two coders, no missing values) and Gwet's AC1. Chance agreement
+#' for pi, alpha and AC1 uses the categories that occur in either coding.
+agreement_coefficients <- function(a, b) {
+  keep <- !is.na(a) & !is.na(b)
+  a <- as.character(a[keep])
+  b <- as.character(b[keep])
+  n <- length(a)
+  if (!n) {
+    return(c(n = 0, agreement = NA_real_, cohen_kappa = NA_real_, scott_pi = NA_real_,
+             krippendorff_alpha = NA_real_, gwet_ac1 = NA_real_))
+  }
+  cats <- sort(unique(c(a, b)))
+  pa <- vapply(cats, function(k) mean(a == k), numeric(1))
+  pb <- vapply(cats, function(k) mean(b == k), numeric(1))
+  pm <- (pa + pb) / 2
+  po <- mean(a == b)
+  chance <- function(pe) if (isTRUE(all.equal(1 - pe, 0))) NA_real_ else (po - pe) / (1 - pe)
+  kappa <- chance(sum(pa * pb))
+  pi <- chance(sum(pm^2))
+  q <- length(cats)
+  ac1 <- if (q < 2) NA_real_ else chance(sum(pm * (1 - pm)) / (q - 1))
+  # Krippendorff: 2n pairable values; observed disagreement from the coincidence matrix
+  m <- 2 * n
+  nk <- vapply(cats, function(k) sum(a == k) + sum(b == k), numeric(1))
+  de <- (m^2 - sum(nk^2)) / (m * (m - 1))
+  do <- 2 * sum(a != b) / m
+  alpha <- if (isTRUE(all.equal(de, 0))) NA_real_ else 1 - do / de
+  c(n = n, agreement = po, cohen_kappa = kappa, scott_pi = pi,
+    krippendorff_alpha = alpha, gwet_ac1 = ac1)
+}
+
 year_window <- function(py, settings) {
   cut(py, breaks = settings$year_breaks, labels = settings$year_labels)
 }

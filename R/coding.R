@@ -184,7 +184,7 @@ table1_analysis <- function(coding, inp, wos, ref, settings) {
       m <- m[, colSums(m) > 0, drop = FALSE]
       c2 <- suppressWarnings(stats::chisq.test(m, correct = FALSE))
       tibble::tibble(pair = paste(pp, collapse = "-"), chisq_p = c2$p.value,
-                     fisher_p = stats::fisher.test(m, simulate.p.value = TRUE, B = B)$p.value,
+                     fisher_p = stats::fisher.test(m, workspace = 2e7)$p.value,
                      cramers_v = cramers_v(m))
     }) %>%
       mutate(sig_bonferroni = chisq_p < 0.05 / n(), alpha_bonferroni = 0.05 / n())
@@ -223,9 +223,13 @@ table1_analysis <- function(coding, inp, wos, ref, settings) {
 #' A paper is "substantive_any" if any cited Part is reviewed, supported,
 #' negative or applied, and "perfunctory_only" otherwise. The paper, not the
 #' paper-Part link, is the unit, so the observations are independent.
-function_overlap_analysis <- function(coding, inp, settings) {
-  codes <- coding$primary
-  if (is.null(codes)) return(list(tables = list()))
+function_overlap_analysis <- function(coding, inp, ref, settings) {
+  if (is.null(coding$primary)) return(list(tables = list()))
+  # Same basis as Table 1 in the article: coded external citers under the
+  # any-author rule (no Project author, not institutional, full text available).
+  codes <- coding_links(inp, coding, ref) %>%
+    filter(external_any, coded) %>%
+    select(UT, part, `function`)
   if (any(!codes$UT %in% inp$uts)) {
     warning("Some coded records are outside the validated corpus.", call. = FALSE)
   }
@@ -268,6 +272,7 @@ function_overlap_analysis <- function(coding, inp, settings) {
       test_table(tab, "paper", "citation engagement x overlap class")
   )
 
+  # Single-Part citers: papers that cite only one Part in the validated corpus.
   single <- codes %>%
     inner_join(inp$part_attr %>% count(UT, name = "n_parts") %>% filter(n_parts == 1), by = "UT")
   if (nrow(single) > 0) {
@@ -295,12 +300,18 @@ reliability_analysis <- function(coding, settings) {
            binary_c2 = ifelse(function_c2 == "perfunctory", "perfunctory", "substantive"))
   k2 <- cohen_kappa(d$binary_c1, d$binary_c2, c("perfunctory", "substantive"))
 
+  a5 <- agreement_coefficients(d$function_c1, d$function_c2)
+  a2 <- agreement_coefficients(d$binary_c1, d$binary_c2)
+
   list(tables = list(
     citation_function_reliability = tibble::tibble(
       coding = c("five-category nominal", "binary perfunctory/substantive"),
       n_double_coded = c(k5["n"], k2["n"]),
       raw_agreement = c(k5["agreement"], k2["agreement"]),
-      cohen_kappa = c(k5["kappa"], k2["kappa"])
+      cohen_kappa = c(k5["kappa"], k2["kappa"]),
+      scott_pi = c(a5["scott_pi"], a2["scott_pi"]),
+      krippendorff_alpha = c(a5["krippendorff_alpha"], a2["krippendorff_alpha"]),
+      gwet_ac1 = c(a5["gwet_ac1"], a2["gwet_ac1"])
     ),
     citation_function_reliability_confusion =
       with_row_names(as.data.frame.matrix(table(d$function_c1, d$function_c2))),

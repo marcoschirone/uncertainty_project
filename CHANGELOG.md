@@ -25,6 +25,11 @@ Analyses added in the first round of review, and a rebuild of the workflow.
 - `output/checks/reported_numbers.csv` recomputes every number reported in the
   article; with `data/private/manuscript_values.csv` the run compares them with
   the text.
+- All code is in R. `data-raw/make_synthetic_wos.R` replaces the Python
+  generator, and the synthetic exports in `data/raw/` were regenerated with it.
+  Their structure is unchanged (323 records, 241 citing a Part, 221 validated);
+  the invented content differs, so demonstration outputs differ from earlier
+  versions.
 
 ### Analyses added
 
@@ -42,7 +47,12 @@ Analyses added in the first round of review, and a rebuild of the workflow.
 - Table 1 rebuilt from the coding sheet on the 221-paper corpus under the
   primary-author and any-author rules, with per-Part reconciliation and
   false-positive rates; paper-level association of citation function with
-  reference overlap; Cohen's kappa for a blind second coder.
+  reference overlap; agreement with a blind second coder (raw agreement,
+  Cohen's kappa, Scott's pi, Krippendorff's alpha, Gwet's AC1); pairwise Part
+  comparisons with Pearson chi-squared and exact Fisher tests.
+- The coding sheets are deposited in `results/coding/`: the primary coding and
+  the blind second coding, one row per paper and Part, with coders anonymised
+  as C1 and C2.
 
 ### Verification
 

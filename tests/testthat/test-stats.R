@@ -20,3 +20,16 @@ test_that("percentages refuse a non-scalar denominator", {
   expect_error(safe_pct(1, c(2, 3)))
   expect_true(is.na(safe_pct(1, 0)))
 })
+
+test_that("agreement coefficients match hand-computed values", {
+  a <- c("x", "x", "y", "y", "x")
+  b <- c("x", "y", "y", "y", "x")
+  out <- agreement_coefficients(a, b)
+  expect_equal(unname(out["agreement"]), 0.8)
+  expect_equal(unname(out["cohen_kappa"]), 0.32 / 0.52)
+  expect_equal(unname(out["cohen_kappa"]), unname(cohen_kappa(a, b, c("x", "y"))["kappa"]))
+  expect_equal(unname(out["scott_pi"]), 0.6)
+  expect_equal(unname(out["gwet_ac1"]), 0.6)
+  expect_equal(unname(out["krippendorff_alpha"]), 1 - 9 * 2 / (100 - 50))
+  expect_true(is.na(agreement_coefficients(c("x", "x"), c("x", "x"))["scott_pi"]))
+})
