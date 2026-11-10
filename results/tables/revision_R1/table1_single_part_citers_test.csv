@@ -1,0 +1,2 @@
+"unit","n_papers","chisq","df","chisq_p","min_expected","cramers_v","fisher_monte_carlo_p","fisher_B"
+"paper; single-Part citers only",160,80.3015130459996,12,3.61529559966985e-12,0.7875,0.409016893105691,9.99990000099999e-06,1e+05

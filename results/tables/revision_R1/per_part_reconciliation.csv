@@ -1,0 +1,6 @@
+"part","wos_doi_matched","false_positives","removed_inaccessible","false_negatives_added","validated","n_institutional","n_primary_self","n_unavailable","n_external_primary","n_external_any","n_coded_primary","n_coded_any","check"
+"P1",60,5,0,0,55,1,4,0,50,50,50,50,0
+"P2",104,2,1,0,101,1,0,1,99,93,99,93,0
+"P3",52,8,0,0,44,1,7,1,35,35,35,35,0
+"P4",69,6,0,3,66,1,4,1,60,59,60,59,0
+"P5",32,1,0,0,31,2,0,1,28,27,27,27,0

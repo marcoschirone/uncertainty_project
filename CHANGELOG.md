@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0 (in preparation)
+## 1.1.0 (2026-11-10)
 
 Analyses added in the first round of review, and a rebuild of the workflow.
 

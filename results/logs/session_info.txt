@@ -1,5 +1,5 @@
 Bibliographic coupling to the Uncertainty Project intellectual base
-Date: 2026-10-20 08:57:28 CEST
+Date: 2026-11-10 10:05:44 CET
 Input: licensed Web of Science exports (data/private)
 
 UP papers: 5 | Citing (raw): 241 | Citing (corrected): 221
@@ -15,37 +15,56 @@ Record correction summary:
   manual_additions_missing_from_raw_export corrected_records
 1                                        0               221
 
-R version 4.3.3 (2024-02-29)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 24.04.5 LTS
+R version 4.6.1 (2026-06-24)
+Platform: aarch64-apple-darwin23
+Running under: macOS Tahoe 26.6.2
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
 
 locale:
- [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
- [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
- [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+[1] C.UTF-8/UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
 
 time zone: Europe/Stockholm
-tzcode source: system (glibc)
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.4.4 tibble_3.2.1  purrr_1.0.2   stringr_1.5.1 tidyr_1.3.1  
-[6] dplyr_1.1.4   targets_1.5.1
+[1] ggplot2_4.0.3  tibble_3.3.1   purrr_1.2.2    stringr_1.6.0  tidyr_1.3.2   
+[6] dplyr_1.2.1    targets_1.12.0
 
 loaded via a namespace (and not attached):
- [1] base64url_1.4      gtable_0.3.4       compiler_4.3.3     tidyselect_1.2.0  
- [5] callr_3.7.5        scales_1.3.0       yaml_2.3.8         R6_2.5.1          
- [9] generics_0.1.3     igraph_1.6.0       knitr_1.45         backports_1.4.1   
-[13] munsell_0.5.0      pillar_1.9.0       rlang_1.1.3        utf8_1.2.4        
-[17] stringi_1.8.3      xfun_0.41          cli_3.6.2          withr_2.5.0       
-[21] magrittr_2.0.3     ps_1.7.6           digest_0.6.34      grid_4.3.3        
-[25] processx_3.8.3     secretbase_0.5.0   lifecycle_1.0.4    vctrs_0.6.5       
-[29] glue_1.7.0         data.table_1.14.10 farver_2.1.1       codetools_0.2-19  
-[33] fansi_1.0.5        colorspace_2.1-0   tools_4.3.3        pkgconfig_2.0.3   
+ [1] tidyselect_1.2.1       viridisLite_0.4.3      farver_2.1.2          
+ [4] S7_0.2.2               lazyeval_0.2.3         fastmap_1.2.0         
+ [7] janeaustenr_1.0.0      promises_1.5.0         XML_3.99-0.23         
+[10] digest_0.6.39          base64url_1.4          mime_0.13             
+[13] lifecycle_1.0.5        secretbase_1.2.2       qpdf_1.4.1            
+[16] tokenizers_0.3.0       processx_3.9.0         magrittr_2.0.5        
+[19] compiler_4.6.1         rlang_1.2.0            tools_4.6.1           
+[22] igraph_2.3.1           tidytext_0.4.3         yaml_2.3.12           
+[25] data.table_1.18.2.1    knitr_1.51             askpass_1.2.1         
+[28] prettyunits_1.2.0      htmlwidgets_1.6.4      bit_4.6.0             
+[31] plyr_1.8.9             RColorBrewer_1.1-3     ca_0.71.1             
+[34] withr_3.0.2            pubmedR_1.0.0          contentanalysis_1.0.0 
+[37] grid_4.6.1             xtable_1.8-8           scales_1.4.0          
+[40] cli_3.6.6              crayon_1.5.3           generics_0.1.4        
+[43] stringdist_0.9.17      otel_0.2.0             httr_1.4.8            
+[46] tzdb_0.5.0             visNetwork_2.1.4       readxl_1.4.5          
+[49] rscopus_0.9.0          parallel_4.6.1         cellranger_1.1.0      
+[52] base64enc_0.1-6        vctrs_0.7.3            Matrix_1.7-5          
+[55] jsonlite_2.0.0         callr_3.7.6            hms_1.1.4             
+[58] bit64_4.8.0            ggrepel_0.9.8          plotly_4.12.0         
+[61] glue_1.8.1             codetools_0.2-20       ps_1.9.3              
+[64] stringi_1.8.7          gtable_0.3.6           later_1.4.8           
+[67] shinycssloaders_1.1.0  pillar_1.11.1          rappdirs_0.3.4        
+[70] htmltools_0.5.9        bibliometrixData_0.3.0 R6_2.6.1              
+[73] httr2_1.2.2            vroom_1.7.1            evaluate_1.0.5        
+[76] shiny_1.13.0           lattice_0.22-9         readr_2.2.0           
+[79] rentrez_1.2.4          backports_1.5.1        SnowballC_0.7.1       
+[82] openxlsx_4.2.8.1       openalexR_3.0.1        httpuv_1.6.17         
+[85] Rcpp_1.1.1-1.1         zip_2.3.3              bibliometrix_5.3.0    
+[88] dimensionsR_0.0.3      xfun_0.57              forcats_1.0.1         
+[91] pdftools_3.8.0         pkgconfig_2.0.3       
