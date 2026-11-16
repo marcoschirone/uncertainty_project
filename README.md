@@ -1,6 +1,6 @@
 # The reception of the Uncertainty Project
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21804423-blue.svg)](https://doi.org/10.5281/zenodo.21804423)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24273869-blue.svg)](https://doi.org/10.5281/zenodo.24273869)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![pipeline](https://github.com/marcoschirone/uncertainty_project/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/marcoschirone/uncertainty_project/actions/workflows/pipeline.yaml)
 
@@ -10,6 +10,10 @@ Information Science and Technology* in 2002. The pipeline validates a Web of
 Science citing corpus against a close-reading correction layer, reconstructs the
 intellectual base of the five Parts, couples each citing paper to it, and runs
 the sensitivity, temporal and citation-function analyses reported in the article.
+
+The article: Wilson, T. D., & Schirone, M. (in press). The impact of the
+"Uncertainty Project": a twenty-five-year retrospective study. *Information
+Research*.
 
 > **Data.** Web of Science records cannot be redistributed. The repository ships
 > synthetic exports in `data/raw/` so that the pipeline runs on a fresh clone;
@@ -100,8 +104,13 @@ set aside or not covered, and one revised code.
 
 ## Citation
 
-Schirone, M. (2026). *UP Bibliographic Coupling Project* [Software]. Zenodo.
-https://doi.org/10.5281/zenodo.21804423
+Please cite the article and, for the code and data, the software release:
+
+Wilson, T. D., & Schirone, M. (in press). The impact of the "Uncertainty
+Project": a twenty-five-year retrospective study. *Information Research*.
+
+Schirone, M. (2026). *UP Bibliographic Coupling Project* (Version 1.1.0)
+[Software]. Zenodo. https://doi.org/10.5281/zenodo.24273869
 
 `CITATION.cff` holds the machine-readable metadata.
 
