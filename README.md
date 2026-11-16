@@ -90,6 +90,12 @@ number reported in the article with the fresh output
    inter-coder reliability. These steps run once the coding files are in
    `data/manual/` (see the README there).
 
+**Coders.** In `results/coding/`, C1 is Tom Wilson, who made the original
+coding (260 codes). C2 is Marco Schirone, who made the blind second coding of
+the 67-link reliability sample (`citation_function_second_coder.csv`) and the
+11 codes marked `C2 (close reading)`: ten links that the original coding had
+set aside or not covered, and one revised code.
+
 `methods_note.md` gives further detail on scope and reconciliation.
 
 ## Citation

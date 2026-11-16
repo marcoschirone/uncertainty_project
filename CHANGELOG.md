@@ -51,8 +51,8 @@ Analyses added in the first round of review, and a rebuild of the workflow.
   Cohen's kappa, Scott's pi, Krippendorff's alpha, Gwet's AC1); pairwise Part
   comparisons with Pearson chi-squared and exact Fisher tests.
 - The coding sheets are deposited in `results/coding/`: the primary coding and
-  the blind second coding, one row per paper and Part, with coders anonymised
-  as C1 and C2.
+  the blind second coding, one row per paper and Part, with coders labelled
+  C1 (Tom Wilson) and C2 (Marco Schirone).
 
 ### Verification
 

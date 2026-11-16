@@ -18,7 +18,7 @@ Save the sheets from Excel as *CSV UTF-8*. Column names are not case-sensitive:
 | `UT` | Web of Science accession number |
 | `part` | `P1` to `P5` |
 | `function` | `perfunctory`, `reviewed`, `supported`, `negative` or `applied` |
-| `coder` | optional, e.g. `C1` |
+| `coder` | optional: `C1` (Tom Wilson), `C2` (Marco Schirone) |
 | `notes` | optional |
 | `contrastive`, `misattribution` | optional, `Y` when applicable |
 
